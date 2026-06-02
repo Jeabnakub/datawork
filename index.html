@@ -9,13 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #111215;
-      --muted: #575c66;
-      --navy-deep: #0a1931;
-      --navy-royal: #15305b;
-      --green-deep: #0b3c1d;
-      --green-forest: #16522d;
-      --metallic-border: rgba(180, 185, 195, 0.4);
+      --ink: #0f172a;
+      --primary-vibrant: #0284c7;
+      --secondary-vibrant: #10b981;
     }
 
     * {
@@ -26,7 +22,8 @@
       margin: 0;
       font-family: 'Sarabun', sans-serif;
       color: var(--ink);
-      background: radial-gradient(circle at 80% -20%, #e2eaf5 0%, #f4f6fa 60%, #e8edf5 100%);
+      /* พื้นหลังไล่เฉดสีฟ้า-พาสเทล ให้ความรู้สึกสดใส สะอาดตา */
+      background: radial-gradient(circle at 90% -10%, #e0f2fe 0%, #f8fafc 50%, #f0fdf4 100%);
       min-height: 100vh;
     }
 
@@ -36,189 +33,172 @@
       position: relative;
     }
 
-    /* Ambient luxury blurred orbs */
-    .ambient-blur {
+    /* ลูกบอลแสงนีออนพาสเทล เพิ่มความสดใสและมิติ */
+    .vibrant-blur {
       position: absolute;
       border-radius: 9999px;
-      filter: blur(100px);
-      opacity: 0.4;
+      filter: blur(110px);
+      opacity: 0.6;
       pointer-events: none;
       z-index: 1;
     }
-    .orb-1 { width: 400px; height: 400px; background: #cbdff7; top: -50px; right: -50px; }
-    .orb-2 { width: 350px; height: 350px; background: #e5daf7; left: -100px; bottom: 100px; }
+    .orb-1 { width: 380px; height: 380px; background: #bae6fd; top: -20px; right: -20px; }
+    .orb-2 { width: 320px; height: 320px; background: #bbf7d0; left: -80px; bottom: 150px; }
 
-    /* Executive Metallic Glassmorphism */
-    .executive-panel {
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(245, 247, 250, 0.85) 100%);
+    /* แผงกระจกโปร่งแสงผสมผสานความโมเดิร์นและทางการ */
+    .vibrant-panel {
+      background: rgba(255, 255, 255, 0.85);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--metallic-border);
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 10px 30px -10px rgba(2, 132, 199, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
     }
 
-    /* Premium Metallic Service Cards */
-    .corporate-card {
+    /* การ์ดบริการปรับปรุงให้มีขอบสีและเงาที่ดูนุ่มนวลชวนคลิก */
+    .vibrant-card {
       position: relative;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      border: 1px solid rgba(180, 185, 195, 0.35);
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
-      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      background: rgba(255, 255, 255, 0.9);
     }
 
-    .corporate-card::before {
+    .card-primary:hover {
+      transform: translateY(-4px);
+      border-color: #38bdf8;
+      box-shadow: 0 20px 40px -15px rgba(2, 132, 199, 0.15);
+    }
+
+    .card-secondary:hover {
+      transform: translateY(-4px);
+      border-color: #34d399;
+      box-shadow: 0 20px 40px -15px rgba(16, 185, 129, 0.15);
+    }
+
+    /* ปุ่มกดสไตล์กระจกเงาวิ่ง (Shimmer Effect) */
+    .btn-vibrant {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.2s ease;
+    }
+    .btn-vibrant::after {
       content: '';
       position: absolute;
-      inset: 0;
+      top: 0; left: -100%; width: 100%; height: 100%;
       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.6s ease;
+      transition: all 0.6s ease;
+    }
+    .btn-vibrant:hover::after {
+      left: 100%;
     }
 
-    .corporate-card:hover::before {
-      transform: translateX(100%);
-    }
-
-    /* Dark Premium Style for Hover states or primary highlights */
-    .card-primary-action:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 36px rgba(10, 25, 49, 0.12);
-      border-color: #15305b;
-    }
-
-    .card-secondary-action:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 36px rgba(11, 60, 29, 0.1);
-      border-color: #16522d;
-    }
-
-    .icon-bubble-premium {
-      width: 50px;
-      height: 50px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-    }
-
-    .btn-premium-metallic {
-      position: relative;
-      transition: all 0.25s ease;
-      overflow: hidden;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 4px 12px rgba(0,0,0,0.05);
-    }
-    
-    .btn-premium-metallic:active {
-      transform: scale(0.98);
-    }
-
-    /* Animations */
-    @keyframes fadeInSlide {
-      from { opacity: 0; transform: translateY(15px); }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
     
-    header { animation: fadeInSlide 0.6s ease-out forwards; }
-    .section-1 { animation: fadeInSlide 0.7s ease-out 0.15s forwards; opacity: 0; }
-    .section-2 { animation: fadeInSlide 0.7s ease-out 0.3s forwards; opacity: 0; }
-    footer { animation: fadeInSlide 0.8s ease-out 0.45s forwards; opacity: 0; }
+    header { animation: fadeInUp 0.5s ease-out forwards; }
+    .section-1 { animation: fadeInUp 0.5s ease-out 0.1s forwards; opacity: 0; }
+    .section-2 { animation: fadeInUp 0.5s ease-out 0.2s forwards; opacity: 0; }
+    footer { animation: fadeInUp 0.5s ease-out 0.3s forwards; opacity: 0; }
   </style>
  </head>
  <body>
   <div class="app-shell py-8 sm:py-12">
-    <div class="ambient-blur orb-1"></div>
-    <div class="ambient-blur orb-2"></div>
+    <div class="vibrant-blur orb-1"></div>
+    <div class="vibrant-blur orb-2"></div>
     
     <main class="relative z-10 w-full px-4 sm:px-6 lg:px-8">
       <div class="mx-auto max-w-5xl">
        
+       <!-- ส่วนหัว (Header) : ปรับให้ดูสว่าง มั่นคง และน่าเชื่อถือ -->
        <header class="mb-8 sm:mb-10">
-        <div class="executive-panel rounded-3xl p-6 sm:p-10 border-t-2 border-t-white">
-         <div class="flex flex-col gap-6">
+        <div class="vibrant-panel rounded-[28px] p-6 sm:p-10 border-t border-white shadow-xl">
+         <div class="flex flex-col gap-5">
           <div class="flex items-center gap-3">
-           <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 text-amber-400 border border-slate-800 shadow-md">
-            <i data-lucide="shield-alert" style="width: 20px; height: 20px;"></i>
+           <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-600 text-white shadow-md shadow-sky-200">
+            <i data-lucide="shield-check" style="width: 20px; height: 20px;"></i>
            </div>
-           <span data-template-id="eyebrow" class="text-xs font-bold tracking-[0.15em] uppercase text-slate-700">E-WORKPERMIT OFFICIAL HELPDESK</span>
+           <span data-template-id="eyebrow" class="text-xs font-bold tracking-[0.12em] uppercase text-sky-700">E-WORKPERMIT HELPDESK SYSTEM</span>
           </div>
           
           <div class="max-w-4xl">
            <h1 data-template-id="page-title" class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-900 leading-tight">
             ระบบจัดการและแจ้งกรณีไม่พบข้อมูลในระบบ EWORKPERMIT
            </h1>
-           <p data-template-id="page-subtitle" class="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl border-l-2 border-slate-300 pl-4">
-            ช่องทางบริการสำหรับนายจ้างและผู้ดำเนินการแทน ในกรณีที่ทำการตรวจสอบข้อมูลแรงงานต่างด้าวแล้วไม่พบฐานข้อมูลในระบบกลาง กรุณาเลือกดำเนินการตามขั้นตอนด้านล่างเพื่อให้เจ้าหน้าที่ส่วนกลางทำการตรวจสอบและปรับปรุงฐานข้อมูลให้ถูกต้อง
+           <p data-template-id="page-subtitle" class="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl">
+            ยินดีต้อนรับสู่ศูนย์บริการข้อมูลออนไลน์ หากคุณตรวจสอบข้อมูลแรงงานต่างด้าวแล้วไม่พบข้อมูลในระบบ eworkpermit กรุณาเลือกดำเนินการตามช่องทางด้านล่าง 
            </p>
           </div>
           
-          <div class="h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent mt-2"></div>
+          <div class="h-px bg-gradient-to-r from-sky-200 via-slate-200 to-transparent mt-2"></div>
           
-          <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-medium text-slate-500">
-           <div class="flex items-center gap-2">
-            <i data-lucide="activity" class="text-emerald-600" style="width: 14px; height: 14px;"></i> 
-            <span data-template-id="meta-one">ระบบเปิดทำการออนไลน์ตลอด 24 ชั่วโมง</span>
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-semibold text-slate-500">
+           <div class="flex items-center gap-2 bg-sky-50 text-sky-700 px-3 py-1.5 rounded-lg border border-sky-100">
+            <i data-lucide="globe-2" class="text-sky-600" style="width: 14px; height: 14px;"></i> 
+            <span data-template-id="meta-one"></span>
            </div>
-           <div class="flex items-center gap-2">
-            <i data-lucide="check-circle-2" class="text-blue-600" style="width: 14px; height: 14px;"></i> 
-            <span data-template-id="meta-two">กรุณาเตรียมเอกสารแสดงตนของแรงงานให้พร้อมก่อนเริ่มขั้นตอน</span>
+           <div class="flex items-center gap-2 bg-emerald-50 text-emerald-700 px-3 py-1.5 rounded-lg border border-emerald-100">
+            <i data-lucide="mouse-pointer-click" class="text-emerald-600" style="width: 14px; height: 14px;"></i> 
+            <span data-template-id="meta-two">เลือกบริการด้านล่างเพื่อเริ่มขั้นตอน</span>
            </div>
           </div>
          </div>
         </div>
        </header>
 
+       <!-- ส่วนเนื้อหาบริการหลัก (Primary Services) -->
        <div class="space-y-8">
-        <section data-template-id="primary-group" class="section-1 rounded-3xl border border-slate-200/80 bg-white/60 p-5 sm:p-8 shadow-sm">
+        <section data-template-id="primary-group" class="section-1 rounded-[24px] border border-slate-200/60 bg-white/50 p-5 sm:p-8 shadow-sm">
          <div class="mb-6 flex flex-col gap-1 px-1">
           <div class="flex items-center gap-2">
-           <span class="h-2.5 w-2.5 rounded-full bg-slate-800"></span>
-           <h2 data-template-id="primary-group-title" class="text-base sm:text-lg font-bold text-slate-900 uppercase tracking-wide">ขั้นตอนและกระบวนการหลัก (Main Procedures)</h2>
+           <span class="h-3 w-3 rounded-full bg-sky-500 shadow-sm shadow-sky-300"></span>
+           <h2 data-template-id="primary-group-title" class="text-base sm:text-lg font-bold text-slate-800 tracking-tight">บริการหลักสำหรับแจ้งข้อมูล</h2>
           </div>
-          <p data-template-id="primary-group-desc" class="pl-4 text-xs sm:text-sm text-slate-500">ขั้นตอนการยื่นคำร้องขอเพิ่มรายชื่อ และการติดตามผลการดำเนินงานของเจ้าหน้าที่</p>
+          <p data-template-id="primary-group-desc" class="pl-5 text-xs sm:text-sm text-slate-500">กรุณาเลือกทำรายการส่งข้อมูลใหม่ หรือตรวจสอบสถานะคำขอที่เคยแจ้งไว้</p>
          </div>
          
-         <div class="grid gap-5 md:grid-cols-2">
-          <article data-template-id="service-card-one" class="corporate-card card-primary-action rounded-2xl p-5 sm:p-6 shadow-sm">
+         <div class="grid gap-6 md:grid-cols-2">
+          <!-- การ์ด 1: แจ้งข้อมูล (Vibrant Blue Theme) -->
+          <article data-template-id="service-card-one" class="vibrant-card card-primary rounded-2xl p-5 sm:p-6 shadow-sm border-b-4 border-b-sky-500">
            <div class="flex h-full flex-col justify-between gap-6">
             <div>
              <div class="mb-5 flex items-start justify-between gap-4">
-              <div data-template-id="service-one-icon-bg" class="icon-bubble-premium bg-slate-50 text-slate-800 border-slate-200">
-               <i data-lucide="user-plus-2" style="width: 22px; height: 22px;"></i>
+              <div data-template-id="service-one-icon-bg" class="h-12 w-12 rounded-xl flex items-center justify-center bg-sky-50 border border-sky-100 text-sky-600 shadow-sm">
+               <i data-lucide="user-plus" style="width: 22px; height: 22px;"></i>
               </div>
-              <span data-template-id="service-one-number" class="rounded-md bg-slate-900 text-amber-400 px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase border border-slate-800 shadow-sm">STEP 01</span>
+              <span data-template-id="service-one-number" class="rounded-full bg-sky-100 text-sky-700 px-3 py-1 text-[10px] font-bold tracking-wider uppercase">STEP 01</span>
              </div>
-             <h3 data-template-id="service-one-title" class="text-lg font-bold text-slate-900 tracking-tight">เพิ่มรายชื่อกรณีไม่พบข้อมูลในระบบ</h3>
+             <h3 data-template-id="service-one-title" class="text-lg font-bold text-slate-900 tracking-tight">เพิ่มรายชื่อกรณีไม่พบข้อมูล</h3>
              <p data-template-id="service-one-desc" class="mt-3 text-xs sm:text-sm leading-relaxed text-slate-600">
-              กรอกฟอร์มนำส่งข้อมูล รายชื่อ ข้อมูลพาสปอร์ต หรือเอกสารอัตลักษณ์ของแรงงานที่ไม่พบในฐานข้อมูล เพื่อส่งเรื่องให้เจ้าหน้าที่ตรวจสอบสิทธิ์และคีย์ข้อมูลเข้าระบบกลาง
+              กรอกฟอร์มเพื่อส่งเรื่องแจ้งข้อมูลแรงงาน/บุคคลที่ไม่พบในระบบ เพื่อให้เจ้าหน้าที่ตรวจสอบความถูกต้องและประสาน OS นำเข้าข้อมูลเข้าสู่ระบบต่อไป
              </p>
             </div>
             <div class="pt-2">
-             <a href="https://108links.com/ework" target="_blank" rel="noopener noreferrer" data-template-id="service-one-button" class="btn-premium-metallic inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#0a1931] text-white px-4 py-3 text-xs font-bold hover:bg-[#15305b] border border-slate-900"> 
-              <span>เริ่มระบบแจ้งข้อมูลใหม่</span> <i data-lucide="arrow-up-right" style="width: 15px; height: 15px;"></i> 
+             <a href="https://108links.com/ework" target="_blank" rel="noopener noreferrer" data-template-id="service-one-button" class="btn-vibrant inline-flex w-full items-center justify-center gap-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white px-4 py-3.5 text-xs font-bold shadow-lg shadow-sky-100"> 
+              <span>เริ่มแจ้งข้อมูลในระบบ</span> <i data-lucide="arrow-up-right" style="width: 15px; height: 15px;"></i> 
              </a>
             </div>
            </div>
           </article>
 
-          <article data-template-id="service-card-two" class="corporate-card card-secondary-action rounded-2xl p-5 sm:p-6 shadow-sm">
+          <!-- การ์ด 2: ตรวจสอบสถานะ (Vibrant Green Theme) -->
+          <article data-template-id="service-card-two" class="vibrant-card card-secondary rounded-2xl p-5 sm:p-6 shadow-sm border-b-4 border-b-emerald-500">
            <div class="flex h-full flex-col justify-between gap-6">
             <div>
              <div class="mb-5 flex items-start justify-between gap-4">
-              <div data-template-id="service-two-icon-bg" class="icon-bubble-premium bg-emerald-50 text-emerald-800 border-emerald-100">
-               <i data-lucide="file-search-2" style="width: 22px; height: 22px;"></i>
+              <div data-template-id="service-two-icon-bg" class="h-12 w-12 rounded-xl flex items-center justify-center bg-emerald-50 border border-emerald-100 text-emerald-600 shadow-sm">
+               <i data-lucide="clipboard-check" style="width: 22px; height: 22px;"></i>
               </div>
-              <span data-template-id="service-two-number" class="rounded-md bg-emerald-900 text-emerald-300 px-2.5 py-1 text-[10px] font-bold tracking-wider uppercase border border-emerald-950 shadow-sm">STEP 02</span>
+              <span data-template-id="service-two-number" class="rounded-full bg-emerald-100 text-emerald-700 px-3 py-1 text-[10px] font-bold tracking-wider uppercase">STEP 02</span>
              </div>
-             <h3 data-template-id="service-two-title" class="text-lg font-bold text-slate-900 tracking-tight">ตรวจสอบสถานะใบอนุญาต (ALINE)</h3>
+             <h3 data-template-id="service-two-title" class="text-lg font-bold text-slate-900 tracking-tight">ตรวจสอบสถานะ</h3>
              <p data-template-id="service-two-desc" class="mt-3 text-xs sm:text-sm leading-relaxed text-slate-600">
-              ติดตามรายงานความคืบหน้าของเอกสารและสถานะอัปเดต (ALINE STATUS) หลังจากส่งข้อมูลไปแล้ว เพื่อตรวจสอบผลการอนุมัติหรือเหตุผลในกรณีที่ไม่ผ่านเกณฑ์
+              ติดตามความคืบหน้าของข้อมูลที่คุณได้ยื่นเรื่องแจ้งไปแล้ว ว่าอยู่ในขั้นตอนการตรวจสอบ หรือนำเข้าระบบเรียบร้อยแล้วหรือไม่
              </p>
             </div>
             <div class="pt-2">
-             <a href="https://jeabnakub.github.io/STATUS-ALINE/" target="_blank" rel="noopener noreferrer" data-template-id="service-two-button" class="btn-premium-metallic inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#0b3c1d] text-white px-4 py-3 text-xs font-bold hover:bg-[#16522d] border border-emerald-950"> 
-              <span>ตรวจสอบสถานะคำขอปัจจุบัน</span> <i data-lucide="arrow-up-right" style="width: 15px; height: 15px;"></i> 
+             <a href="https://jeabnakub.github.io/STATUS-ALINE/" target="_blank" rel="noopener noreferrer" data-template-id="service-two-button" class="btn-vibrant inline-flex w-full items-center justify-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-3.5 text-xs font-bold shadow-lg shadow-emerald-100"> 
+              <span>ตรวจสอบสถานะปัจจุบัน</span> <i data-lucide="arrow-up-right" style="width: 15px; height: 15px;"></i> 
              </a>
             </div>
            </div>
@@ -226,35 +206,35 @@
          </div>
         </section>
 
-        <section data-template-id="secondary-group" class="section-2 rounded-3xl border border-slate-200/80 bg-white/60 p-5 sm:p-8 shadow-sm">
+        <!-- ส่วนเนื้อหาบริการเพิ่มเติม (Secondary Services) -->
+        <section data-template-id="secondary-group" class="section-2 rounded-[24px] border border-slate-200/60 bg-white/50 p-5 sm:p-8 shadow-sm">
          <div class="mb-5 flex flex-col gap-1 px-1">
           <div class="flex items-center gap-2">
-           <span class="h-2.5 w-2.5 rounded-full bg-slate-400"></span>
-           <h2 data-template-id="secondary-group-title" class="text-base font-bold text-slate-800 uppercase tracking-wide">ส่วนสนับสนุนและดาวน์โหลด (Support & Manuals)</h2>
+           <span class="h-3 w-3 rounded-full bg-slate-400"></span>
+           <h2 data-template-id="secondary-group-title" class="text-base font-bold text-slate-800 tracking-tight"></h2>
           </div>
-          <p data-template-id="secondary-group-desc" class="pl-4 text-xs text-slate-500">เอกสารแนะนำเพื่อการเตรียมข้อมูลอย่างถูกต้องตามระเบียบส่วนกลาง</p>
+          <p data-template-id="secondary-group-desc" class="pl-5 text-xs text-slate-500"></p>
          </div>
          
-         <article data-template-id="service-card-three" class="rounded-2xl border border-slate-200 bg-slate-50/90 p-5 shadow-inner">
+         <article data-template-id="service-card-three" class="rounded-2xl border border-slate-200 bg-slate-50/80 p-5 shadow-inner">
           <div class="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-center">
-           <div class="flex items-start gap-4 sm:gap-5">
-            <div data-template-id="service-three-icon-bg" class="icon-bubble-premium bg-white text-slate-400 border-slate-200 shadow-sm mt-0.5">
-             <i data-lucide="book-open-check" style="width: 20px; height: 20px;"></i>
+           <div class="flex items-start gap-4">
+            <div data-template-id="service-three-icon-bg" class="h-11 w-11 rounded-xl bg-white border border-slate-200 text-slate-400 flex items-center justify-center shadow-sm mt-0.5">
+             <i data-lucide="book-open" style="width: 20px; height: 20px;"></i>
             </div>
             <div class="min-w-0">
-             <div class="mb-2 flex flex-wrap items-center gap-2">
-              <span data-template-id="service-three-number" class="rounded bg-slate-200 text-slate-700 px-2 py-0.5 text-[9px] font-bold tracking-wider">DOCS</span> 
-              <span data-template-id="service-three-status" class="rounded bg-amber-100 text-amber-800 border border-amber-200 px-2 py-0.5 text-[9px] font-semibold">อยู่ระหว่างปรับปรุงข้อมูล</span>
+             <div class="mb-1.5 flex flex-wrap items-center gap-2">
+              <span data-template-id="service-three-number" class="rounded bg-slate-200 text-slate-600 px-2 py-0.5 text-[9px] font-bold tracking-wider">INFO</span> 
+              <span data-template-id="service-three-status" class="rounded bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 text-[9px] font-semibold">เร็วๆ นี้</span>
              </div>
-             <h3 data-template-id="service-three-title" class="text-base font-bold text-slate-800">ดาวน์โหลดคู่มือการจัดเตรียมเอกสารและแก้ไขระบบ</h3>
-             <p data-template-id="service-three-desc" class="mt-1.5 text-xs sm:text-sm text-slate-500 leading-relaxed">
-              คู่มืออธิบายเกณฑ์มาตรฐาน รูปแบบไฟล์ภาพถ่าย และเอกสารทางกฎหมายที่จำเป็นต้องอัปโหลดเข้าสู่ระบบป้องกันความผิดพลาดและลดการถูกปฏิเสธข้อมูลจากเจ้าหน้าที่
-             </p>
+             <h3 data-template-id="service-three-title" class="text-base font-bold text-slate-800"></h3>
+             <p data-template-id="service-three-desc" class="mt-1 text-xs sm:text-sm text-slate-500 leading-relaxed">
+              </p>
             </div>
            </div>
            <div>
             <button type="button" data-template-id="service-three-button" class="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-slate-200 text-slate-400 cursor-not-allowed px-5 py-3 text-xs font-bold lg:w-auto border border-slate-300" disabled> 
-             <span>ระบบดาวน์โหลดเปิดเร็วๆ นี้</span> <i data-lucide="lock" style="width: 14px; height: 14px;"></i> 
+             <span>ยังไม่เปิดใช้บริการ</span> <i data-lucide="clock" style="width: 14px; height: 14px;"></i> 
             </button>
            </div>
           </div>
@@ -262,9 +242,10 @@
         </section>
        </div>
 
-       <footer class="pt-8 sm:pt-10 text-center border-t border-slate-200/60 mt-8">
-        <p data-template-id="footer-note" class="text-xs text-slate-400 font-medium tracking-wide">
-          © 2026 E-WORKPERMIT Centralized Helpdesk System. All Rights Reserved. (ระบบบริการข้อมูลอิเล็กทรอนิกส์ส่วนกลาง)
+       <!-- ส่วนท้าย (Footer) -->
+       <footer class="pt-8 text-center border-t border-slate-200/50 mt-8">
+        <p data-template-id="footer-note" class="text-xs text-slate-400 font-medium">
+          © 2026 E-WORKPERMIT Helpdesk System. สงวนลิขสิทธิ์ตามกฎหมาย.
         </p>
        </footer>
        
@@ -274,7 +255,6 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      // เรียกใช้ระบบไอคอนอัตโนมัติจากคลังข้อมูล Lucide CDN
       if (window.lucide) {
         lucide.createIcons();
       }
