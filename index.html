@@ -6,7 +6,8 @@
   <title>ระบบแจ้งกรณีไม่พบข้อมูลในระบบ EWORKPERMIT</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Niramit:wght@300;400;500;600;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- นำเข้าฟอนต์ IBM Plex Sans Thai และ Anuphan เพื่อความคมชัดระดับสูงสุด -->
+  <link href="https://fonts.googleapis.com/css2?family=Anuphan:wght@300;400;500;600;700&amp;family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
     :root {
       --ink: #0f172a;
@@ -20,8 +21,8 @@
 
     body {
       margin: 0;
-      /* เลือกใช้ Niramit เป็นหลัก และ Noto Sans Thai เป็นตัวสำรอง เพื่อลุคที่ดูสากลและเป็นทางการ */
-      font-family: 'Niramit', 'Noto Sans Thai', sans-serif;
+      /* เลือกใช้ IBM Plex Sans Thai เป็นหลักเพื่อให้ระบบดูสวยงาม มีระเบียบ คมชัดอ่านง่าย */
+      font-family: 'IBM Plex Sans Thai', 'Anuphan', sans-serif;
       color: var(--ink);
       background: radial-gradient(circle at 90% -10%, #e0f2fe 0%, #f8fafc 50%, #f0fdf4 100%);
       min-height: 100vh;
@@ -112,18 +113,25 @@
          <div class="flex flex-col gap-5">
           <div class="flex items-center gap-3">
            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-600 text-white shadow-md shadow-sky-200">
-            <i data-lucide="shield-check" style="width: 20px; height: 20px;"></i>
+            <i data-lucide="building-2" style="width: 20px; height: 20px;"></i>
            </div>
-           <span data-template-id="eyebrow" class="text-xs font-bold tracking-[0.15em] uppercase text-sky-700">E-WORKPERMIT HELPDESK SYSTEM</span>
+           <span data-template-id="eyebrow" class="text-xs font-bold tracking-[0.12em] uppercase text-sky-700">สำนักบริหารแรงงานต่างด้าว กรมการจัดหางาน</span>
           </div>
           
           <div class="max-w-4xl">
            <h1 data-template-id="page-title" class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-950 leading-snug">
             ระบบจัดการและแจ้งกรณีไม่พบข้อมูลในระบบ EWORKPERMIT
            </h1>
-           <p data-template-id="page-subtitle" class="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl font-normal">
-            ยินดีต้อนรับสู่ศูนย์บริการข้อมูลออนไลน์ หากคุณตรวจสอบข้อมูลแรงงานต่างด้าวแล้วไม่พบข้อมูลในระบบ eworkpermit กรุณาเลือกดำเนินการตามช่องทางด้านล่าง 
-           </p>
+           
+           <!-- กล่องข้อความแจ้งเตือนสีแดงเข้ม หนา ชัดเจน สะดุดตา -->
+           <div class="mt-5 flex gap-3 rounded-2xl border border-red-200 bg-red-50/90 p-4 sm:p-5 shadow-sm">
+            <div class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-100 text-red-600">
+             <i data-lucide="alert-circle" style="width: 16px; height: 16px;"></i>
+            </div>
+            <p data-template-id="page-subtitle" class="text-sm sm:text-base font-bold leading-relaxed text-red-600">
+             คำเตือน : เว็บไซต์นี้ สำนักบริหารแรงงานต่างด้าว กรมการจัดหางาน ได้จัดทำขึ้นเพื่อตรวจสอบและนำเข้าข้อมูลแรงงานต่างด้าว 4 สัญชาติ กรณีที่ไม่พบข้อมูลในระบบ <span class="underline decoration-2 font-extrabold tracking-wide">eworkpermit.doe.go.th</span>
+            </p>
+           </div>
           </div>
           
           <div class="h-px bg-gradient-to-r from-sky-200 via-slate-200 to-transparent mt-2"></div>
@@ -198,10 +206,11 @@
           </article>
          </div>
         </section>
+       </div>
 
        <footer class="pt-8 text-center border-t border-slate-200/50 mt-8">
         <p data-template-id="footer-note" class="text-xs text-slate-400 font-medium tracking-wide">
-         © 2026 E-WORKPERMIT Helpdesk System. สงวนลิขสิทธิ์ตามกฎหมาย.
+          © 2026 E-WORKPERMIT Helpdesk System | สำนักบริหารแรงงานต่างด้าว กรมการจัดหางาน. สงวนลิขสิทธิ์ตามกฎหมาย.
         </p>
        </footer>
        
@@ -215,7 +224,6 @@
         lucide.createIcons();
       }
 
-      // แสดงวันที่ปัจจุบันเป็นภาษาไทยแบบอัตโนมัติให้เข้ากับธีมระบบราชการ/ทางการ
       const dateDisplay = document.getElementById('current-date-display');
       if (dateDisplay) {
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
